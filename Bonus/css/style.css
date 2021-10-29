@@ -32,7 +32,7 @@
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.8s;
 }
 
 .slider__single-image.active {
@@ -74,10 +74,16 @@ img {
 
 .slider__single-thumbnail {
   position: relative;
+  transition: box-shadow 0.8s;
+}
+
+.slider__single-thumbnail img {
+  position: relative;
+  z-index: -1;
 }
 
 .slider__single-thumbnail.active {
-  border: 2px solid white;
+  box-shadow: 0 0 0 2px white inset;
 }
 
 .slider__single-thumbnail::after {
@@ -85,6 +91,7 @@ img {
   position: absolute;
   inset: 0;
   background-color: rgba(31, 15, 15, 0.2);
+  transition: background-color 0.8s;
 }
 
 .slider__single-thumbnail.active::after {
