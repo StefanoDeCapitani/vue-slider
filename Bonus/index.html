@@ -18,7 +18,11 @@
   <body>
     <div id="root">
       <div class="slider">
-        <div class="slider__images">
+        <div
+          class="slider__images"
+          @mouseover="pauseSlider"
+          @mouseleave="startSlider"
+        >
           <div
             v-for="image, i in imagesList"
             class="slider__single-image"
@@ -32,10 +36,10 @@
           </div>
         </div>
         <div class="slider__thumbnails">
-          <button @click="showPrevious()" class="btn btn--previous">
+          <button @click="manualChange(showPrevious)" class="btn btn--previous">
             <i class="fas fa-chevron-up btn__icon"></i>
           </button>
-          <button @click="showNext()" class="btn btn--next">
+          <button @click="manualChange(showNext)" class="btn btn--next">
             <i class="fas fa-chevron-down btn__icon"></i>
           </button>
           <div

@@ -32,8 +32,14 @@ window.addEventListener("DOMContentLoaded", function () {
         },
       ],
       currentImageIndex: 0,
+      interval: 0,
     },
     methods: {
+      manualChange(method) {
+        this.pauseSlider();
+        method();
+        this.startSlider();
+      },
       showPrevious() {
         this.currentImageIndex =
           this.currentImageIndex > 0
@@ -46,9 +52,23 @@ window.addEventListener("DOMContentLoaded", function () {
             ? ++this.currentImageIndex
             : 0;
       },
+      navigateSliderByKeyboard(e) {
+        if (e.keyCode === 38) {
+          this.manualChange(this.showPrevious);
+        } else if (e.keyCode === 40) {
+          this.manualChange(this.showNext);
+        }
+      },
+      startSlider() {
+        this.interval = setInterval(this.showNext, 3000);
+      },
+      pauseSlider() {
+        clearInterval(this.interval);
+      },
     },
     mounted() {
-      setInterval(this.showNext, 3000);
+      this.startSlider();
+      document.addEventListener("keydown", this.navigateSliderByKeyboard);
     },
   });
 });
